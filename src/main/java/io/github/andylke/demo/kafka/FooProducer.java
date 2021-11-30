@@ -10,6 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
@@ -25,6 +27,7 @@ public class FooProducer {
   @Value("${batch-processing.records}")
   private int records;
 
+  @EventListener(ApplicationReadyEvent.class)
   public void send() {
     final List<CompletableFuture<?>> futures = new ArrayList<CompletableFuture<?>>();
 

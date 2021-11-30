@@ -14,6 +14,6 @@ class FooTopicConfiguration {
 
   @Bean
   public NewTopic fooTopic() {
-    return TopicBuilder.name("foo").partitions(partitionSize).compact().build();
+    return TopicBuilder.name("foo").partitions(partitionSize).build();
   }
 }
