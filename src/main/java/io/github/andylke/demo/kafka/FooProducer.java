@@ -27,13 +27,16 @@ public class FooProducer {
   @Value("${batch-processing.records}")
   private int records;
 
+  @Value("${batch-processing.topic}")
+  private String topic;
+
   @EventListener(ApplicationReadyEvent.class)
   public void send() {
     final List<CompletableFuture<?>> futures = new ArrayList<CompletableFuture<?>>();
 
     final long startTime = System.nanoTime();
     for (int index = 0; index < records; index++) {
-      futures.add(kafkaTemplate.send("foo", "foo" + index).completable());
+      futures.add(kafkaTemplate.send(topic, "foo" + index).completable());
     }
     try {
       CompletableFuture.allOf(futures.toArray(size -> new CompletableFuture<?>[size])).join();
@@ -43,8 +46,9 @@ public class FooProducer {
     }
 
     LOGGER.info(
-        "Sent [{}] records, elapsed [{}]",
+        "Sent [{}] records to [{}], elapsed [{}]",
         records,
+        topic,
         Duration.ofNanos(startTime - System.nanoTime()));
   }
 }

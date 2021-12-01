@@ -19,7 +19,7 @@ public class FooConsumer {
 
   @Autowired private FooProcessor processor;
 
-  @KafkaListener(topics = "foo")
+  @KafkaListener(topics = "${batch-processing.topic}")
   public void receive(String record) throws InterruptedException {
     LOGGER.info("Received [{}]", record);
 

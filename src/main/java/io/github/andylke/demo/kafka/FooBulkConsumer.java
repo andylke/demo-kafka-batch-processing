@@ -21,7 +21,7 @@ public class FooBulkConsumer {
 
   @Autowired private FooProcessor processor;
 
-  @KafkaListener(topics = "foo")
+  @KafkaListener(topics = "${batch-processing.topic}")
   public void receive(List<String> records) throws InterruptedException {
     LOGGER.info("Received [{}] records", records.size());
 

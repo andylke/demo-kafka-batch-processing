@@ -12,6 +12,9 @@ class FooTopicConfiguration {
   @Value("${spring.kafka.listener.concurrency}")
   private int partitionSize;
 
+  @Value("${batch-processing.topic}")
+  private String topic;
+
   @Bean
   public NewTopic fooTopic() {
     return TopicBuilder.name("foo").partitions(partitionSize).build();
