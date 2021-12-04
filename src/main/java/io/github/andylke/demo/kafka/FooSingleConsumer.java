@@ -13,9 +13,9 @@ import org.springframework.stereotype.Component;
     name = "type",
     havingValue = "SINGLE",
     matchIfMissing = true)
-public class FooConsumer {
+public class FooSingleConsumer {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(FooConsumer.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(FooSingleConsumer.class);
 
   @Autowired private FooProcessor processor;
 

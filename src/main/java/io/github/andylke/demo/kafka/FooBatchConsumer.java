@@ -15,9 +15,9 @@ import org.springframework.stereotype.Component;
     name = "type",
     havingValue = "BATCH",
     matchIfMissing = false)
-public class FooBulkConsumer {
+public class FooBatchConsumer {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(FooBulkConsumer.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(FooBatchConsumer.class);
 
   @Autowired private FooProcessor processor;
 
